@@ -36,5 +36,30 @@
                 </form>
             </div>
         </div>
+        <div class="max-w-7xl mt-5 mx-auto sm:px-6 lg:px-8">
+            <div class="block max-w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow">
+                <form action="{{ route('project.invite', $project->id )}}" method="POST">
+                    @csrf
+                    <div class="shadow sm:overflow-hidden sm:rounded-md">
+                        <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                            <div class="grid grid-cols-3 gap-6">
+                                <div class="col-span-3">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700">Add Member</label>
+                                    <div class="mt-1 flex gap-5 rounded-md">
+                                        <input type="text" name="email" id="company-website" class="block w-full flex-1 rounded-md border-gray-300 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm" placeholder="useremail@eample.com">
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" name="admin" class="sr-only peer" checked>
+                                            <div class="w-11 h-[1.55rem] bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-cyan-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[0.55rem] after:left-[0.12rem] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-cyan-600"></div>
+                                            <span class="ml-3 text-sm font-medium text-gray-900">Admin permission</span>
+                                        </label>
+                                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-cyan-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">Add member</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </x-app-layout>
