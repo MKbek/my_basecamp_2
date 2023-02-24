@@ -5,25 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ProjectUser extends Model
+class Topic extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'project_id',
         'user_id',
-        'role',
+        'title',
     ];
 
-    public function project(): HasMany
+    public function project(): BelongsTo
     {
-        return $this->hasMany(Project::class);
-    }
-
-    public function users(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Project::class);
     }
 }

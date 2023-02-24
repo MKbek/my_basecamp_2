@@ -48,7 +48,7 @@
                                     <div class="mt-1 flex gap-5 rounded-md">
                                         <input type="text" name="email" id="company-website" class="block w-full flex-1 rounded-md border-gray-300 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm" placeholder="useremail@eample.com">
                                         <label class="relative inline-flex items-center cursor-pointer">
-                                            <input type="checkbox" name="admin" class="sr-only peer" checked>
+                                            <input type="checkbox" name="admin" class="sr-only peer">
                                             <div class="w-11 h-[1.55rem] bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-cyan-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[0.55rem] after:left-[0.12rem] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-cyan-600"></div>
                                             <span class="ml-3 text-sm font-medium text-gray-900">Admin permission</span>
                                         </label>

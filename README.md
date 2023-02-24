@@ -1,4 +1,4 @@
-# Welcome to My Basecamp 1
+# Welcome to My Basecamp 2
 ***
 
 ## Task
@@ -22,8 +22,7 @@ There is no need to install anything, just go to the site and rate
 5. Run `npm run dev`
 6. Run `php artisan serve`
 
-#### List of minimum library version requirements
-
+### List of minimum library version requirements
 | Library  | Version |
 |----------|---------|
 | PHP      | ^8.0.8  |
@@ -40,13 +39,11 @@ https://basecamp.qwasar.alphacom.uz/dashboard
 
 To test, we already have 2 users, we will specify the username and password below in the list of users for testing
 
-Users for testing
----------------------------------------------
+### Users for testing
 | Role       | Login             | Password |
 |------------|-------------------|----------|
 | **Admin**  | admin@example.com | admin123 |
 | **User**   | user@example.com  | qwertyui |
----------------------------------------------
 
 ### The Core Team
 

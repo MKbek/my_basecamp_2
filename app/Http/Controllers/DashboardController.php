@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\ProjectUser;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $projects = $request->user()->projectUser;
 
@@ -35,7 +37,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function welcome(Request $request)
+    public function welcome(Request $request): View|RedirectResponse
     {
         if (!$request->user()) {
             return view('welcome');
