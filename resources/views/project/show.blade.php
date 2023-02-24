@@ -60,7 +60,7 @@
                         @if($authUser['role'] === 'admin')
                         <form action="{{ route('topic.store', $project->id) }}" method="POST">
                             @csrf
-                            <div class="shadow-lg sm:overflow-hidden sm:rounded-md ring-1 ring-cyan-500">
+                            <div class="shadow-lg sm:overflow-hidden rounded-xl ring-1 ring-cyan-500">
                                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                                     <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3">
@@ -78,7 +78,7 @@
                         @if ($project->topics)
                             <div class="text-gray-500 flex gap-4 mt-5 flex-row flex-wrap">
                             @foreach($project->topics as $topic)
-                                <div class="relative pointer-events-auto w-[20.95rem] h-96 rounded-lg bg-white overflow-hidden text-[0.8125rem] leading-5 shadow-xl shadow-black/5 hover:bg-slate-50 ring-1 ring-cyan-500 cursor-default">
+                                <div class="relative pointer-events-auto w-[20.95rem] h-96 rounded-xl bg-white overflow-hidden text-[0.8125rem] leading-5 shadow-xl shadow-black/5 hover:bg-slate-50 ring-1 ring-cyan-500 cursor-default">
                                     <div class="flex justify-between items-center py-2 px-5 bg-gray-200/50 border-b border-gray-500">
                                         <div class="font-medium text-slate-900 text-lg">{{ $topic['title'] }}</div>
                                         @if($authUser['role'] === 'admin')
@@ -105,19 +105,35 @@
                                         @foreach($topic['messages'] as $message)
                                             @if ($message['user']['id'] === $authUser['user_id'])
                                             <div class="flex justify-end gap-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-cyan-500">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-                                                </svg>
                                                 <div class="flex flex-col p-2 bg-cyan-50 rounded-md ring-1 ring-cyan-400 ">
                                                     <div class="text-cyan-500 text-xs">{{ $message['user']['email'] }}</div>
                                                     <div class="text-gray-900">{{ $message['message'] }}</div>
                                                 </div>
+                                                <div class="flex flex-col justify-center items-center gap-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-cyan-500">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                                                    </svg>
+                                                    <a href="{{ route('topic.message.edit', [$topic['id'], $message['id']]) }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
                                             </div>
                                             @else
                                             <div class="flex justify-start gap-2 w-fit">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-                                                </svg>
+                                                <div class="flex flex-col justify-center items-center gap-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                                                    </svg>
+                                                    @if ($authUser['role'] === 'admin')
+                                                    <a href="{{ route('topic.message.edit', [$topic['id'], $message['id']]) }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                        </svg>
+                                                    </a>
+                                                    @endif
+                                                </div>
                                                 <div class="flex flex-col p-2 bg-gray-50 rounded-md ring-1 ring-gray-400 ">
                                                     <div class="text-gray-500 text-xs">{{ $message['user']['email'] }}</div>
                                                     <div class="text-gray-900">{{ $message['message'] }}</div>
@@ -129,7 +145,7 @@
                                     <form action="{{ route('topic.message', $topic['id']) }}" method="POST" class="absolute left-0 right-0 bottom-0">
                                         @csrf
                                         <div class="flex gap-1 w-full bg-gray-100 border-t border-gray-500">
-                                            <input type="text" name="message" id="message" class="block w-full bg-transparent flex-1 border-none focus:ring-cyan-500 sm:text-sm" placeholder="Discussion">
+                                            <input type="text" name="message" id="message" class="block w-full bg-transparent flex-1 border-none focus:ring-cyan-500 sm:text-sm" placeholder="Message...">
                                             <button type="submit" class="inline-flex justify-center rounded-full border border-transparent bg-cyan-600 my-1 mx-2 py-1 px-1 text-sm font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
@@ -170,7 +186,7 @@
                         @endif
                         <form action="{{ route('attachment.store', $project->id) }}" method="POST" enctype="multipart/form-data" class="mt-5">
                             @csrf
-                            <div class="shadow-md sm:overflow-hidden sm:rounded-md ring-1 ring-cyan-500">
+                            <div class="shadow-md sm:overflow-hidden rounded-xl ring-1 ring-cyan-500">
                                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                                     <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3">
@@ -209,13 +225,13 @@
                             </svg>
                             Topics
                         </a>
-                        <a href="#attachments" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white cursor-pointer">
+                        <a class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2 stroke-current">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                             </svg>
                             Tasks
                         </a>
-                        <a type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white cursor-pointer">
+                        <a href="#attachments" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2 stroke-current">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
                             </svg>

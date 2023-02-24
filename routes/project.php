@@ -27,7 +27,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/topic/{id}/message', [TopicsController::class, 'message'])->name('topic.message');
     Route::get('/topic/{id}/message/{mid}/edit', [TopicsController::class, 'editMessage'])->name('topic.message.edit');
-    Route::post('/topic/{id}/message/{mid}/delete', [TopicsController::class, 'deleteMessage'])->name('topic.message.delete');
+    Route::patch('/topic/{id}/message/{mid}', [TopicsController::class, 'updateMessage'])->name('topic.message.update');
+    Route::delete('/topic/{id}/message/{mid}/delete', [TopicsController::class, 'deleteMessage'])->name('topic.message.delete');
 
     Route::post('/project/{id}/attachment', [AttachmentController::class, 'store'])->name('attachment.store');
     Route::delete('/project/{id}/attachment/{fid}', [AttachmentController::class, 'destroy'])->name('attachment.destroy');

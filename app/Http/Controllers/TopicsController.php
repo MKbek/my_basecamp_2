@@ -88,4 +88,62 @@ class TopicsController extends Controller
 
         return redirect()->route('project.show', [$topic->project_id, '#topic-' . $id]);
     }
+
+    public function editMessage(Request $request, $id, $mid): View|RedirectResponse
+    {
+        $message = TopicMessage::where('id', $mid)->where('user_id', $request->user()->id)->first();
+        $topic = Topic::find($id);
+
+        if (!$message) {
+            return redirect()->route('project.show', [$id, '#topic-' . $topic->id]);
+        }
+
+        $user = ProjectUser::where('project_id', $topic->project_id)->where('user_id', $request->user()->id)->first();
+
+        if ($user->role !== 'admin' || $message->user_id !== $request->user()->id) {
+            return redirect()->route('project.show', [$topic->project_id, '#topic-' . $topic->id]);
+        }
+
+        return view('topic.message.edit', compact('topic','message'));
+    }
+
+    public function updateMessage(Request $request, $id, $mid): RedirectResponse
+    {
+        $message = TopicMessage::where('id', $mid)->where('user_id', $request->user()->id)->first();
+        $topic = Topic::find($id);
+
+        if (!$message) {
+            return redirect()->route('project.show', [$id, '#topic-' . $topic->id]);
+        }
+
+        $user = ProjectUser::where('project_id', $topic->project_id)->where('user_id', $request->user()->id)->first();
+
+        if ($user->role !== 'admin' || $message->user_id !== $request->user()->id) {
+            return redirect()->route('project.show', [$topic->project_id, '#topic-' . $topic->id]);
+        }
+
+        $message->update($request->only(['message']));
+
+        return redirect()->route('project.show', [$topic->project_id, '#topic-' . $id]);
+    }
+
+    public function deleteMessage(Request $request, $id, $mid): RedirectResponse
+    {
+        $message = TopicMessage::where('id', $mid)->where('user_id', $request->user()->id)->first();
+
+        if (!$message) {
+            return redirect()->route('project.show', $id);
+        }
+
+        $topic = Topic::find($id);
+        $user = ProjectUser::where('project_id', $topic->project_id)->where('user_id', $request->user()->id)->first();
+
+        if ($user->role !== 'admin' || $message->user_id !== $request->user()->id) {
+            return redirect()->route('project.show', $topic->project_id);
+        }
+
+        $message->delete();
+
+        return redirect()->route('project.show', [$topic->project_id, '#topic-' . $id]);
+    }
 }

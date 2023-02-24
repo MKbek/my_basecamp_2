@@ -15,7 +15,7 @@ I used the Laravel PHP framework to solve this problem in this first part of the
 There is no need to install anything, just go to the site and rate
 
 #### And if you want to check the code itself I have posted the project in my GitHub page
-1. Clone the repository `git clone https://github.com/mxbek/my_basecamp_1.git`
+1. Clone the repository `git clone https://github.com/mxbek/my_basecamp_2.git`
 2. Run `composer install`
 3. Run `php artisan migrate`
 4. Run `npm install`
