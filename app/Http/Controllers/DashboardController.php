@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\ProjectUser;
+use App\Models\Topic;
+use App\Models\TopicMessage;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,6 +33,14 @@ class DashboardController extends Controller
             $project->users = $users;
             $project->meta = Project::find($project->project_id);
         }
+
+        $projectTopics = Topic::all()->where('project_id', $project->project_id);
+        $topicsCount = 0;
+        foreach ($projectTopics as $projectTopic) {
+            $messages = TopicMessage::all()->where('topic_id', $projectTopic->id);
+            $topicsCount += count($messages);
+        }
+        $project->topicsCount = $topicsCount;
 
         return view('dashboard', [
             'projects' => $projects,
